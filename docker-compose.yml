@@ -8,12 +8,8 @@ services:
     volumes:
       - "./palworld_data:/app/palworld-dedicated:rw"
     ports:
-      - "7777:7777/udp"
+      - "8221:8221/udp"
     environment:
-      - SRCDS_STARTMAP=ctf_2fort
-      - SRCDS_TICKRATE=128
-      - SRCDS_GAMETYPE=1
-      - SRCDS_GAMEMODE=2
-      - SRCDS_MAXPLAYERS=32
+      - ADDITIONAL_ARGS="-EpicApp=PalServer"
     stdin_open: true
     tty: true

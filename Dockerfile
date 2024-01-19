@@ -22,6 +22,7 @@ RUN set -x \
 		sudo \
 		wget \
 		ca-certificates \
+		lib32gcc-s1 lib32stdc++6 \
 		lib32z1 \
 		libtinfo5:i386 \
 		libncurses5:i386 \
@@ -54,5 +55,4 @@ WORKDIR ${APP}
 CMD ["bash", "entry.sh"]
 ENTRYPOINT []
 # Expose ports
-EXPOSE 7777/tcp \
-	7777/udp
+EXPOSE 8221/udp
