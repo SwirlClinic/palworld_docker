@@ -1,0 +1,19 @@
+version: "3.9"
+
+services:
+  palworld_server:
+    build: .
+    platform: linux/amd64
+    container_name: "palworld_server"
+    volumes:
+      - "./palworld_data:/app/palworld-dedicated:rw"
+    ports:
+      - "7777:7777/udp"
+    environment:
+      - SRCDS_STARTMAP=ctf_2fort
+      - SRCDS_TICKRATE=128
+      - SRCDS_GAMETYPE=1
+      - SRCDS_GAMEMODE=2
+      - SRCDS_MAXPLAYERS=32
+    stdin_open: true
+    tty: true
