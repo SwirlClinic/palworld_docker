@@ -5,12 +5,8 @@ mkdir -p "${STEAMAPPDIR}" || true
 mkdir -p "${STEAMAPPDIR}/${STEAMAPP}"
 
 echo "Checking/Installing SteamCMD"
-echo "${APP}/${STEAMAPP}_update.txt"
-
 steamcmd +runscript "${APP}/${STEAMAPP}_update.txt"
-chown -R "${USERNAME}:${USERNAME}" "${STEAMAPPDIR}"
-mkdir -p /home/steam/.steam/sdk64
-ln -s "${STEAMAPPDIR}/linux64/steamclient.so" "/home/steam/.steam/sdk64/steamclient.so"
+chown -R "${USER}:${USER}" "${STEAMAPPDIR}" "${HOME}"
 
-sudo -u ${USERNAME} -H sh -c "${STEAMAPPDIR}/PalServer.sh" \
-		"${ADDITIONAL_ARGS}" 
+echo "${STEAMAPPDIR}/PalServer.sh ${ADDITIONAL_ARGS}"
+sudo -u ${USER} -H sh -c "${STEAMAPPDIR}/PalServer.sh ${ADDITIONAL_ARGS}"
