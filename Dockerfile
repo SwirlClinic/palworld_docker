@@ -5,13 +5,8 @@ ENV STEAMAPP palworld
 ENV STEAMAPPDIR "${APP}/${STEAMAPP}-dedicated"
 ENV ADDITIONAL_ARGS=""
 
-ENV STEAM_PATH="${HOME}/.steam/steam"
-ENV STEAM_COMPAT_CLIENT_INSTALL_PATH=$STEAM_PATH
-ENV STEAM_COMPAT_DATA_PATH=${STEAM_PATH}/steamapps/compatdata/${STEAMAPPID}
-
 # set -x will print all commands to terminal
 RUN set -x \
-&& mkdir -p "${STEAM_COMPAT_DATA_PATH}" \
 	&& mkdir -p "${STEAMAPPDIR}" \
 	&& { \
 		echo '@ShutdownOnFailedCommand 1'; \
@@ -35,8 +30,21 @@ VOLUME ${STEAMAPPDIR}
 
 WORKDIR ${APP}
 
-CMD ["bash", "entry.sh"]
-ENTRYPOINT []
+ENV STEAM_PATH="${HOME}/.steam/steam"
+ENV STEAM_COMPAT_CLIENT_INSTALL_PATH=$STEAM_PATH
+ENV STEAM_COMPAT_DATA_PATH=${STEAM_PATH}/steamapps/compatdata/${STEAMAPPID}
+RUN mkdir -p "${STEAM_COMPAT_DATA_PATH}"
+
+
+RUN set -x \
+	&& wget https://aka.ms/vs/17/release/vc_redist.x86.exe -O /tmp/vc_redist.x86.exe \
+	&& wget https://aka.ms/vs/17/release/vc_redist.x64.exe -O /tmp/vc_redist.x64.exe \
+	&& ${PROTON} run "/tmp/vc_redist.x64.exe /install /passive /norestart" \
+	&& ${PROTON} run "/tmp/vc_redist.x86.exe /install /passive /norestart"
+	
+
+#CMD ["bash", "entry.sh"]
+ENTRYPOINT ["bash", "entry.sh"]
 # Expose ports
 EXPOSE 8211/udp \
 		27015
