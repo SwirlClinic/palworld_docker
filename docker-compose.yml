@@ -9,7 +9,6 @@ services:
       - "./palworld_data:/app/palworld-dedicated:rw"
     ports:
       - "8211:8211/udp"
-      - "27015:27015"
     environment:
       - ADDITIONAL_ARGS=-EpicApp=PalServer -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDS
     stdin_open: true
