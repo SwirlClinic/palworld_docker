@@ -12,7 +12,7 @@ RUN set -x \
 		echo '@ShutdownOnFailedCommand 1'; \
 		echo '@NoPromptForPassword 1'; \
 		echo '@sSteamCmdForcePlatformType windows'; \
-		echo 'force_install_dir '"${STEAMAPPDIR}"''; \
+				echo 'force_install_dir '"${STEAMAPPDIR}"''; \
 		echo 'login anonymous'; \
 		echo 'app_update '"${STEAMAPPID}"''; \
 		echo 'quit'; \
