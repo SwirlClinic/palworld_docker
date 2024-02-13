@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>palworld_proton</Name>
+  <Repository>ghcr.io/swirlclinic/palworld_docker:proton</Repository>
+  <Registry/>
+  <Network>bridge</Network>
+  <MyIP/>
+  <Shell>bash</Shell>
+  <Privileged>true</Privileged>
+  <Support/>
+  <Project/>
+  <Overview/>
+  <Category/>
+  <WebUI/>
+  <TemplateURL/>
+  <Icon/>
+  <ExtraParams/>
+  <PostArgs/>
+  <CPUset/>
+  <DateInstalled>1707847889</DateInstalled>
+  <DonateText/>
+  <DonateLink/>
+  <Requires/>
+  <Config Name="Host Path 1" Target="/app/palworld-dedicated" Default="" Mode="rw" Description="" Type="Path" Display="always" Required="false" Mask="false">/mnt/user/appdata/palworld/</Config>
+  <Config Name="ADDITIONAL_ARGS" Target="ADDITIONAL_ARGS" Default="" Mode="" Description="" Type="Variable" Display="always" Required="false" Mask="false">-EpicApp=PalServer </Config>
+  <Config Name="game port" Target="" Default="8211" Mode="udp" Description="" Type="Port" Display="always" Required="false" Mask="false">8211</Config>
+</Container>
