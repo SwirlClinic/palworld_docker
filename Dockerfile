@@ -35,14 +35,13 @@ ENV STEAM_COMPAT_CLIENT_INSTALL_PATH=$STEAM_PATH
 ENV STEAM_COMPAT_DATA_PATH=${STEAM_PATH}/steamapps/compatdata/${STEAMAPPID}
 RUN mkdir -p "${STEAM_COMPAT_DATA_PATH}"
 
-
-RUN set -x \
-	&& wget https://aka.ms/vs/17/release/vc_redist.x86.exe -O /tmp/vc_redist.x86.exe \
-	&& wget https://aka.ms/vs/17/release/vc_redist.x64.exe -O /tmp/vc_redist.x64.exe \
-	&& ${PROTON} run "/tmp/vc_redist.x64.exe /install /passive /norestart" \
-	&& ${PROTON} run "/tmp/vc_redist.x86.exe /install /passive /norestart"
+# RUN set -x \
+# 	&& wget https://aka.ms/vs/17/release/vc_redist.x86.exe -O /tmp/vc_redist.x86.exe \
+# 	&& wget https://aka.ms/vs/17/release/vc_redist.x64.exe -O /tmp/vc_redist.x64.exe \
+# 	&& ${PROTON} run "/tmp/vc_redist.x64.exe /install /passive /norestart" \
+# 	&& ${PROTON} run "/tmp/vc_redist.x86.exe /install /passive /norestart"
 	
-
+RUN cp -r ${PROTON_DIR}/${PROTON_VERSION}/files/share/default_pfx ${STEAM_COMPAT_DATA_PATH}
 #CMD ["bash", "entry.sh"]
 ENTRYPOINT ["bash", "entry.sh"]
 # Expose ports
