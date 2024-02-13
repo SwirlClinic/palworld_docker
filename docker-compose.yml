@@ -5,10 +5,11 @@ services:
     build: .
     platform: linux/amd64
     container_name: "palworld_win_server"
+    privileged: true
     volumes:
       - "./palworld_data:/app/palworld-dedicated:rw"
     ports:
-      - "8311:8211/udp"
+      - "8211:8211/udp"
     environment:
       - ADDITIONAL_ARGS=-EpicApp=PalServer -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDS
     stdin_open: true
